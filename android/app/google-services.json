@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "599673945435",
+    "firebase_url": "https://urtask-011197.firebaseio.com",
+    "project_id": "urtask-011197",
+    "storage_bucket": "urtask-011197.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599673945435:android:1663fb908d697b0e",
+        "android_client_info": {
+          "package_name": "com.aateam.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599673945435-1ghgu1m054pvr69k1ml030degdmmnp2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGR_mOf-HHjdoO3cS8ycAw7GHsZVE220w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
