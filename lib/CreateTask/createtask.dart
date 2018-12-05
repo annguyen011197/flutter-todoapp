@@ -1,21 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:urtask/FireBase/BaseAuth.dart';
 
 class CreateTask extends StatefulWidget {
   static final String route = "CreateTask";
-  final FirebaseUser user;
+  final BaseAuth auth;
 
-  CreateTask({this.user});
+  CreateTask({this.auth});
 
   @override
-  State<StatefulWidget> createState() => _State(user);
+  State<StatefulWidget> createState() => _State(auth);
 }
 
 class _State extends State<CreateTask> {
   final controller = TextEditingController();
-  FirebaseUser user;
-  _State(this.user);
+  BaseAuth auth;
+  _State(this.auth);
   @override
   void dispose() {
     super.dispose();
@@ -57,7 +57,9 @@ class _State extends State<CreateTask> {
             FlatButton(
               child: Text('Add'),
               onPressed: (){
-                FirebaseDatabase.instance.reference().child(user.uid).child('task').push().set({'name':controller.text});
+                auth.currentUser().then((id){
+                  FirebaseDatabase.instance.reference().child(id).child('task').push().set({'name':controller.text});
+                });
               },
             )
           ],

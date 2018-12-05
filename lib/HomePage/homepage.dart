@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../CreateTask/createtask.dart';
-
+import 'package:urtask/FireBase/BaseAuth.dart';
 class HomePage extends StatelessWidget {
   static final String route = "HomePage";
-  final FirebaseUser user;
+  final VoidCallback onSignOut;
+  final BaseAuth auth;
 
-  HomePage({this.user});
+  HomePage({this.auth, this.onSignOut});
 
 //  void navigationPage(FirebaseUser user) {
 //    Navigator.of().push(MaterialPageRoute(
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreateTask(user: user,)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreateTask(auth: auth,)));
           }, elevation: 5.0, child: new Icon(Icons.add)),
     );
   }
