@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:urtask/FireBase/BaseAuth.dart';
+import 'package:random_color/random_color.dart';
 
 class CreateTask extends StatefulWidget {
   static final String route = "CreateTask";
@@ -15,7 +16,9 @@ class CreateTask extends StatefulWidget {
 class _State extends State<CreateTask> {
   final controller = TextEditingController();
   BaseAuth auth;
+
   _State(this.auth);
+
   @override
   void dispose() {
     super.dispose();
@@ -49,17 +52,23 @@ class _State extends State<CreateTask> {
               padding: EdgeInsets.all(20.0),
               child: TextField(
                 controller: controller,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder()
-                ),
+                decoration: InputDecoration(border: OutlineInputBorder()),
               ),
             ),
             FlatButton(
               child: Text('Add'),
-              onPressed: (){
-                auth.currentUser().then((id){
-                  FirebaseDatabase.instance.reference().child(id).child('task').push().set({'name':controller.text});
-                });
+              onPressed: () {
+                if (controller.text.trim().length > 0) {
+                  auth.currentUser().then((id) {
+                    FirebaseDatabase.instance
+                        .reference()
+                        .child(id)
+                        .child('task')
+                        .push()
+                        .set({'name': controller.text,'color':RandomColor().randomColor().toString()});
+                    Navigator.of(context).pop();
+                  });
+                }
               },
             )
           ],
