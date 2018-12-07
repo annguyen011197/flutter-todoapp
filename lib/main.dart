@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:urtask/FireBase/BaseAuth.dart';
 import 'package:urtask/FireBase/RootPage.dart';
@@ -65,9 +64,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     startTime();
-//    signInAnon().then((FirebaseUser user) {
-//      navigationPage(user);
-//    }).catchError((e) => debugPrint(e));
   }
 
   @override
