@@ -32,6 +32,7 @@ class _State extends State<TaskList> {
   // create some value
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
+  String currentName = "Task Name";
   ValueChanged<Color> onColorChanged;
   FirebaseDatabase _database;
   DatabaseReference _reference;
@@ -89,9 +90,11 @@ class _State extends State<TaskList> {
 
   void _onValueChanged(DataSnapshot snapshot) {
     Color color = Utils.getColor(snapshot.value['color']);
+    String name = snapshot.value['name'] ?? currentName;
     if (this.mounted)
       setState(() {
         currentColor = color;
+        currentName = name;
       });
   }
 
@@ -146,7 +149,7 @@ class _State extends State<TaskList> {
             onPressed: () {
               Navigator.of(context).pop();
             }),
-        title: Text("Task name",
+        title: Text(currentName,
             style: TextStyle(fontSize: 20, color: Colors.white70)),
         centerTitle: true,
         backgroundColor: currentColor,
@@ -286,9 +289,6 @@ class _State extends State<TaskList> {
                   .child(list.elementAt(index).item1)
                   .update({'done': !list.elementAt(index).item2.isDone});
             }
-//            setState(() {
-//              checkDone();
-//            });
           }),
     );
   }
